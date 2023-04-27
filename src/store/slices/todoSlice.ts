@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Todo {
   id: string;
@@ -17,7 +17,15 @@ const initialState: Todos = {
 const todosSlice = createSlice({
   name: "todos",
   initialState,
-  reducers: {},
+  reducers: {
+    addTodo: (state, action: PayloadAction<Todo[]>) => {
+      state.todos = action.payload;
+    },
+    deleteTodo: (state, action: PayloadAction<string>) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+    },
+  },
 });
 
+export const { addTodo, deleteTodo } = todosSlice.actions;
 export default todosSlice;
