@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/store";
 import { addTodo, deleteTodo } from "./store/slices/todoSlice";
+
 interface Todo {
   id: string;
   text: string;
