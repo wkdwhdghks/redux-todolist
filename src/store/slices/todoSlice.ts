@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface Todo {
   id: string;
   text: string;
-  checked: boolean;
+  status: boolean;
 }
 
 interface Todos {
@@ -24,8 +24,14 @@ const todosSlice = createSlice({
     deleteTodo: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
+    updateTodo: (state, action: PayloadAction<Todo>) => {
+      state.todos = state.todos.map((todo) =>
+        todo.id === action.payload.id ? action.payload : todo
+      );
+    },
+    // reviseTodo:
   },
 });
 
-export const { addTodo, deleteTodo } = todosSlice.actions;
+export const { addTodo, deleteTodo, updateTodo } = todosSlice.actions;
 export default todosSlice;
