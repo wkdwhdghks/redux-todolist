@@ -4,6 +4,7 @@ interface Todo {
   id: string;
   text: string;
   status: boolean;
+  isActive: boolean;
 }
 
 interface Todos {
@@ -29,7 +30,6 @@ const todosSlice = createSlice({
         todo.id === action.payload.id ? action.payload : todo
       );
     },
-    // reviseTodo:
   },
 });
 

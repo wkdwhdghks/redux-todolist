@@ -2,12 +2,14 @@ import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/store";
-import { addTodo, deleteTodo, updateTodo } from "./store/slices/todoSlice";
+import { addTodo } from "./store/slices/todoSlice";
+import TodoItem from "./TodoItem";
 
 interface Todo {
   id: string;
   text: string;
   status: boolean;
+  isActive: boolean;
 }
 
 function App() {
@@ -21,7 +23,12 @@ function App() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const todo: Todo = { id: uuid(), text: text, status: false };
+    const todo: Todo = {
+      id: uuid(),
+      text: text,
+      status: false,
+      isActive: false,
+    };
     dispatch(addTodo([...todos, todo]));
     setText("");
   };
@@ -36,15 +43,7 @@ function App() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <input
-              type="checkbox"
-              onChange={(e) => {
-                const status = e.target.checked ? true : false;
-                dispatch(updateTodo({ ...todo, status: status }));
-              }}
-            />
-            {todo.text} <span>[o]</span>
-            <span onClick={() => dispatch(deleteTodo(todo.id))}>[x]</span>
+            <TodoItem todo={todo} />
           </li>
         ))}
       </ul>
