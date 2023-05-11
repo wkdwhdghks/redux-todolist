@@ -3,7 +3,9 @@ import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/store";
 import { addTodo } from "./store/slices/todoSlice";
-import TodoItem from "./TodoItem";
+import Header from "./components/Header";
+import TodoItem from "./components/TodoItem";
+import styles from "./App.module.css";
 
 interface Todo {
   id: string;
@@ -34,19 +36,32 @@ function App() {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input value={text} onChange={handleChange} />
-        <button type="submit">확인</button>
-      </form>
+    <div className={styles.container}>
+      <div className={styles.subContainer}>
+        <Header />
 
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <TodoItem todo={todo} />
-          </li>
-        ))}
-      </ul>
+        <form className={styles.formContainer} onSubmit={onSubmit}>
+          <input
+            className={styles.input}
+            value={text}
+            placeholder="할 일을 입력해주세요"
+            onChange={handleChange}
+          />
+          <button className={styles.button} type="submit">
+            확인
+          </button>
+        </form>
+
+        <div className={styles.todoContainer}>
+          <ul>
+            {todos.map((todo) => (
+              <li key={todo.id}>
+                <TodoItem todo={todo} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

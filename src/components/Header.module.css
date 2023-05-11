@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  height: 130px;
+  margin-bottom: 10px;
+}
+
+.headerContainer {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.circleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-color: #f4be4f;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.circleContainer span:first-child {
+  background-color: #ec6a5e;
+  margin-right: 8px;
+}
+
+.circleContainer span:last-child {
+  background-color: #61c555;
+  margin-left: 8px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.subTitle {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.ymd,
+.day {
+  margin-right: 5px;
+}
