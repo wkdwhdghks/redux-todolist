@@ -70,6 +70,7 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
             <input
               className={styles.checkbox}
               type="checkbox"
+              checked={todo.status}
               onChange={handleUpdate}
             />
             <p className={styles.todo}>{todo.text}</p>
