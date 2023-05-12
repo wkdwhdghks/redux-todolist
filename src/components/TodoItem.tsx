@@ -73,7 +73,11 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
               checked={todo.status}
               onChange={handleUpdate}
             />
-            <p className={styles.todo}>{todo.text}</p>
+            <p
+              className={`${styles.todo} ${todo.status ? styles.todoLine : ""}`}
+            >
+              {todo.text}
+            </p>
           </div>
           <div className={styles.rightContainer}>
             <BiEdit className={styles.edit} onClick={handleisActive} />

@@ -65,6 +65,10 @@
   height: 18px;
 }
 
+.todoLine {
+  text-decoration: line-through;
+}
+
 .rightContainer {
   display: flex;
   align-items: center;
