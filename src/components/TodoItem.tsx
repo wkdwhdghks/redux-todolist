@@ -35,7 +35,7 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
   };
 
   const handleUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const status = e.target.checked ? true : false;
+    const status = e.target.checked;
     dispatch(updateTodo({ ...todo, status: status }));
   };
 
