@@ -17,6 +17,7 @@ interface Todo {
 
 function App() {
   const [text, setText] = useState("");
+  // const loaclTodos = localStorage.getItem(JSON.parse("todos"));
   const todos = useSelector((state: RootState) => state.todos.todos);
   const dispatch = useDispatch();
 
