@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/store";
@@ -6,6 +6,7 @@ import { addTodo } from "./store/slices/todoSlice";
 import Header from "./components/Header";
 import TodoItem from "./components/TodoItem";
 import styles from "./App.module.css";
+import { darkModeCheck } from "./store/slices/darkModeSlice";
 
 interface Todo {
   id: string;
@@ -34,6 +35,14 @@ function App() {
     dispatch(addTodo([...todos, todo]));
     setText("");
   };
+
+  useEffect(() => {
+    const isDark =
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
+    dispatch(darkModeCheck(isDark));
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>

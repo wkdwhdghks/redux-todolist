@@ -48,4 +48,19 @@
   height: calc(100% - 24px - 30px - 36px - 21px - 19px - 30px - 50px);
   overflow-y: scroll;
   margin-bottom: 20px;
+  padding-right: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-bg);
+  border-radius: 10px;
 }

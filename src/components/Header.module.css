@@ -2,6 +2,7 @@
   width: 100%;
   height: 130px;
   margin-bottom: 10px;
+  color: var(--color-text);
 }
 
 .headerContainer {
@@ -11,7 +12,8 @@
   margin-bottom: 10px;
 }
 
-.circleContainer {
+.circleContainer,
+.darkModeContainer {
   display: flex;
   align-items: center;
 }
@@ -33,6 +35,17 @@
 .circleContainer span:last-child {
   background-color: #61c555;
   margin-left: 8px;
+}
+
+.sun,
+.moon {
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.sun:hover,
+.moon:hover {
+  transform: scale(1.3);
 }
 
 .title {

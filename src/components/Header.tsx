@@ -1,7 +1,9 @@
 import { useState } from "react";
-import styles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import styles from "./Header.module.css";
+import { toggleDarkMode } from "../store/slices/darkModeSlice";
 
 const Header: React.FC = () => {
   const [timer, setTimer] = useState("00:00:00");
@@ -13,7 +15,6 @@ const Header: React.FC = () => {
     const todayDate = now.getDate();
     const week = ["SUN", "MON", "TUE", "WED", "THE", "FRI", "SAT"];
     const dayOfWeek = week[now.getDay()];
-
     return todayYear + "." + todayMonth + "." + todayDate + dayOfWeek;
   };
 
@@ -29,8 +30,9 @@ const Header: React.FC = () => {
   startTimer();
 
   const todos = useSelector((state: RootState) => state.todos.todos);
+  const todo = todos.filter((todo) => !todo.status).length;
+  const darkMode = useSelector((state: RootState) => state.darkMode.darkMode);
   const dispatch = useDispatch();
-  const a = todos.filter((todo) => !todo.status).length;
 
   return (
     <div className={styles.container}>
@@ -41,16 +43,18 @@ const Header: React.FC = () => {
           <span className={styles.circle}></span>
         </div>
 
-        <div className={styles.circleContainer}>
-          <span className={styles.circle}></span>
-          <span className={styles.circle}></span>
-          <span className={styles.circle}></span>
+        <div
+          className={styles.darkModeContainer}
+          onClick={() => dispatch(toggleDarkMode())}
+        >
+          {!darkMode && <BsFillSunFill className={styles.sun} />}
+          {darkMode && <BsFillMoonFill className={styles.moon} />}
         </div>
       </div>
 
       <div>
         <p className={styles.title}>오늘 할 일</p>
-        <p className={styles.subTitle}>할 일 {a}개</p>
+        <p className={styles.subTitle}>할 일 {todo}개</p>
         <span className={styles.ymd}>{todayTime().slice(0, 9)}</span>
         <span className={styles.day}>{todayTime().slice(9, 12)}</span>
         <span>{timer}</span>
