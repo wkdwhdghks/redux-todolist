@@ -18,7 +18,7 @@ const darkModeSlice = createSlice({
     },
     darkModeCheck: (state, action: PayloadAction<boolean>) => {
       state.darkMode = action.payload;
-      updateDarkMode(state.darkMode);
+      updateDarkMode(action.payload);
     },
   },
 });
